@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+
+    <define name="memmonicValue">
+        <choice>
+            <zeroOrMore>
+                <element name="value">
+                    <text/>
+                </element>
+            </zeroOrMore>
+       
+            <optional>
+                <element name="comment">
+                    <text/>
+                </element>
+            </optional>
+        </choice>
+    </define>
+    <define name="instuctionValue">
+
+        <element name="value">
+            <text/>
+        </element>
+        <optional>
+            <element name="comment">
+                <text/>
+            </element>
+        </optional>
+    </define>
+    <define name="label">
+<zeroOrMore>
+    <element name="label">
+       <element name="name"><text></text></element>
+<ref name="lines"></ref>
+    </element>
+</zeroOrMore>
+       
+    </define>
+    <define name="instructionSet">
+        <zeroOrMore>
+            <element name="mnemonic">
+                <choice>
+                    <element name="ADCaddWithCarry">
+                        <element name="name"><value>ADC</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+
+                    <element name="ANDbitwiseAndWithAccumulator">
+                        <element name="name"><value>AND</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+
+                    <element name="ASLartihmeticShiftLeft">
+                        <element name="name"><value>ASL</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+
+                    <element name="BITtestBits">
+                        <element name="name"><value>BIT</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <!-- Branch Instructions -->
+                    <element name="BPLsetCarry">
+                        <element name="name"><value>BPL</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BMIbranchonMinus">
+                        <element name="name"><value>BMT</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BVCbranchonOverflowClear">
+                        <element name="name"><value>BVC</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BVSbranchonOverflowSet">
+                        <element name="name"><value>BVS</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BCCbranchonCarryClear">
+                        <element name="name"><value>BCC</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BCSbranchonCarrySet">
+                        <element name="name"><value>BCS</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BEQbranchonEqual">
+                        <element name="name"><value>BEQ</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+
+                    <!--  -->
+                    <element name="BNEbranchonNotequal">
+                        <element name="name"><value>BNE</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="BRKbreak">
+                        <element name="name"><value>BRK</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="CMPcompareAccumulator">
+                        <element name="name"><value>CMP</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="CPXcompareXRegister">
+                        <element name="name"><value>CPX</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="CPYcompareYRegister">
+                        <element name="name"><value>CPY</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="DECdecrementMemory">
+                        <element name="name"><value>DEC</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="EORbitWiseExclusiveOr">
+                        <element name="name"><value>EOR</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <!-- Flag (Processor Status) Instructions -->
+                    <element name="CLClearCarry">
+                        <element name="name"><value>CLC</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="SECsetCarry">
+                        <element name="name"><value>SET</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="SEIsetCarry">
+                        <element name="name"><value>SEI</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="CLIclearInterrupt">
+                        <element name="name"><value>CLI</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="SEIsetInterrupt">
+                        <element name="name"><value>SEI</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="CLVclearOverflow">
+                        <element name="name"><value>CLV</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="CLDclearDecimal">
+                        <element name="name"><value>CLD</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="SEDsetDecimal">
+                        <element name="name"><value>SED</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <!--  -->
+                    <element name="INCincrementMemory">
+                        <element name="name"><value>INC</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="JMPjump">
+                        <element name="name"><value>JMP</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="JSRjumpToSubRoutine">
+                        <element name="name"><value>JSR</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="LDAloadAccumulator">
+                        <element name="name"><value>LDA</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="LDXloadXRegister">
+                        <element name="name"><value>LDX</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="LDYloadYRegister">
+                        <element name="name"><value>LDY</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="LSRlogicalShiftRight">
+                        <element name="name"><value>LSR</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="NOPnoOperation">
+                        <element name="name"><value>NOP</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="ORAbitwiseOrWithAccumulator">
+                        <element name="name"><value>ORA</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <!-- Register Instuctions -->
+
+                    <element name="TAXTtansferAtoX">
+                        <element name="name"><value>TAX</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="TXAtransferXtoA">
+                        <element name="name"><value>TXA</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="DEXdecrementX">
+                        <element name="name"><value>DEX</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="INXincrementX">
+                        <element name="name"><value>INX</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="TAYtransferAtoY">
+                        <element name="name"><value>TAY</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="DEYdecrementY">
+                        <element name="name"><value>DEY</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="INYincrementY">
+                        <element name="name"><value>INY</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+
+                    <!-- End Register Instructions -->
+                    <element name="ROLrotateLeft">
+                        <element name="name"><value>ROL</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="RORrotateRight">
+                        <element name="name"><value>ROR</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="RTIreturnFromInterrupt">
+                        <element name="name"><value>RTI</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="RTSreturnFromSubroutine">
+                        <element name="name"><value>RTS</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="SBCSubTractwithCarry">
+                        <element name="name"><value>SBC</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="STAStoreAccumulator">
+                        <element name="name"><value>STA</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <!-- Stack Insructions -->
+                    <element name="TSXTransferXtoStackptr">
+                        <element name="name"><value>TSX</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="TSXTranferStackPtrtoX">
+                        <element name="name"><value>OOO</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="PHAPushAccumulator">
+                        <element name="name"><value>PHP</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="PLApullAccumulator">
+                        <element name="name"><value>PLA</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="PHPpushProcessorStatus">
+                        <element name="name"><value>PHP</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="PLPpullProcessorsStatus">
+                        <element name="name"><value>PLP</value></element>
+                        <ref name="instuctionValue"/>
+                    </element>
+                    <element name="STXstoreXReigster">
+                        <element name="name"><value>STX</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                    <element name="STYstoreYRegister">
+                        <element name="name"><value>STY</value></element>
+                        <ref name="memmonicValue"/>
+                    </element>
+                </choice>
+            </element>
+        </zeroOrMore>
+
+    </define>
+    <define name="lines">
+    <element name="lines">
+            <oneOrMore>
+                <element name="line">
+                    <ref name="instructionSet"/>
+                   <ref name="label"></ref>
+                    
+                    
+                </element>
+            </oneOrMore>
+       
+           
+        </element>
+
+    </define>
+    
+    <start>
+        <element name="sixfivezerotwo">
+            <ref name="lines"/>
+           
+        </element>
+    </start>
+</grammar>
