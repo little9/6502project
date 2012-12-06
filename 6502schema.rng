@@ -5,15 +5,14 @@
 
 
     <define name="sixfivezerotwo">
+        <a:documentation>Definition for root element. It can contain optional annotations and requires line groups.</a:documentation>
         <element name="sixfivezerotwo">
             <zeroOrMore>
                 <ref name="annotation"></ref>
             </zeroOrMore>
             <ref name="lineGroup"></ref>
         </element>
-    </define>
-    
-    
+    </define>   
     <define name="memmonicValue">
         <choice>
             <zeroOrMore>
@@ -296,27 +295,35 @@
 
     </define>
     <define name="lineGroup">
-    <element name="lines">
-            <oneOrMore>
-                <element name="line">
-                    <ref name="instructionSet"/>
-                   <ref name="label"></ref>
-                    
-                    
-                </element>
-            </oneOrMore>
-       
-           
+    <element name="lineGroup">
+        <oneOrMore>
+            <choice>
+                <oneOrMore>
+                    <ref name="line"></ref>
+                </oneOrMore>
+                <zeroOrMore>
+                    <ref name="multiLineComment"></ref>
+                </zeroOrMore>
+            </choice>
+            
+        </oneOrMore> 
         </element>
-    </define>
+    </define>  
+    <define name="line">
+        <element name="line">
+            <ref name="instructionSet"/>
+            <ref name="label"></ref>
+            
+            
+        </element>
+    </define> 
     <define name="comment">
         <element name="comment">
         <text></text>
                 
             
         </element>
-    </define>
-    
+    </define>  
     <define name="annotation">
         <zeroOrMore>
             <element name="annotation">
@@ -326,8 +333,7 @@
             </element>
         </zeroOrMore>
       
-    </define>
-    
+    </define>   
     <define name="phraseLevel">
         <a:documentation>A definition for phrase level text</a:documentation>
         <oneOrMore>
@@ -351,7 +357,12 @@
             </choice>
         </oneOrMore>
     </define>
-   
+    <define name="multiLineComment">
+    <element name="multiLineComment">
+        <text></text>
+    </element>
+       
+   </define>
    
     <start>
        <ref name="sixfivezerotwo"></ref>

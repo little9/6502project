@@ -1,86 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/C:/Users/James/SkyDrive/Documents/6502schema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="file:/C:/Users/James/SkyDrive/6502project/6502schema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <sixfivezerotwo>
-    <lines>
+    <lineGroup>
+        <multiLineComment>
+            ;  ___           _        __ ___  __ ___
+            ; / __|_ _  __ _| |_____ / /| __|/  \_  )
+            ; \__ \ ' \/ _` | / / -_) _ \__ \ () / /
+            ; |___/_||_\__,_|_\_\___\___/___/\__/___|
+            
+            ; Change direction: W A S D
+            
+            ; $00-01 => screen location of apple
+            ; $10-11 => screen location of snake head
+            ; $12-?? => snake body (in byte pairs)
+            ; $02    => direction (1 => up, 2 => right, 4 => down, 8 => left)
+            ; $03    => snake length
+        </multiLineComment>
         <line>
-        <mnemonic>
-   <LDXloadXRegister>
-       <name>LDX</name>
-       <value>#$08</value>
-    </LDXloadXRegister>
-        </mnemonic>
- 
+            <mnemonic>
+               <JSRjumpToSubRoutine>
+                    <name>JSR</name>
+                    <value>init</value>
+               </JSRjumpToSubRoutine>
+            </mnemonic>
         </line>
-    <line>
-      <label>
-          <name>
-              decrement:
-          </name>
-          <lines><line>
-              <mnemonic>
-                  
-             <DEXdecrementX>
-                 <name>DEX</name>
-                 <value/>
-             </DEXdecrementX>
-              </mnemonic>
-              
-          </line>
-          <line>
-              <mnemonic>
-                  <STXstoreXReigster>
-                      <name>STX</name>
-                      <value>
-                          $0200
-                      </value>
-                  </STXstoreXReigster>
-              </mnemonic>
-              
-          </line>
-              <line>
-              <mnemonic>
-                  <CPXcompareXRegister>
-                      <name>CPX</name>
-                      <value>
-                          #$03
-                      </value>
-                  </CPXcompareXRegister>
-              </mnemonic>
-              
-          </line>
-              
-              <line>
-                  <mnemonic>
-                      <BNEbranchonNotequal>
-                          <name>BNE</name>
-                          <value>decrement</value>
-                      </BNEbranchonNotequal>
-                  </mnemonic>
-              </line>
-              <line>
-                 <mnemonic>
-                     <STXstoreXReigster>
-                         <name>STX</name>
-                         <value>
-                             $0201
-                         </value>
-                     </STXstoreXReigster>
-                 </mnemonic>
-              </line>
-              
-              <line>
-                 <mnemonic>
-                
-                     <BRKbreak>
-                         <name>BRK</name>
-                     </BRKbreak>
-                 </mnemonic>
-              </line>
-
-          </lines>
-      </label>
-        
-    </line>
-    </lines>
-
+        <line>
+            <mnemonic>
+                <JSRjumpToSubRoutine>
+                    <name>JSR</name>
+                    <value>loop</value>
+                </JSRjumpToSubRoutine>
+            </mnemonic>
+        </line>
+        <line>  
+           <label>
+               <name>init:</name>
+               <lineGroup>
+                   <line>
+                       <mnemonic>
+                           <JSRjumpToSubRoutine>
+                               <name>JSR</name>
+                               <value>initSnake</value>
+                           </JSRjumpToSubRoutine>
+                       </mnemonic>
+                   </line>
+                   <line>
+                       <mnemonic>
+                           <JSRjumpToSubRoutine>
+                               <name>JSR</name>
+                               <value>generateApplePosition</value>
+                           </JSRjumpToSubRoutine>
+                       </mnemonic>
+                   </line>
+                   <line>
+                       <mnemonic>
+                           <RTSreturnFromSubroutine>
+                               <name>RTS</name>
+                           </RTSreturnFromSubroutine>
+                       </mnemonic>
+                   </line>
+               </lineGroup>
+           </label>
+        </line>
+ 
+    </lineGroup>
+    
 </sixfivezerotwo>
