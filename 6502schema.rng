@@ -4,6 +4,16 @@
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
 
+    <define name="sixfivezerotwo">
+        <element name="sixfivezerotwo">
+            <zeroOrMore>
+                <ref name="annotation"></ref>
+            </zeroOrMore>
+            <ref name="lineGroup"></ref>
+        </element>
+    </define>
+    
+    
     <define name="memmonicValue">
         <choice>
             <zeroOrMore>
@@ -34,7 +44,7 @@
 <zeroOrMore>
     <element name="label">
        <element name="name"><text></text></element>
-<ref name="lines"></ref>
+        <ref name="lineGroup"></ref>
     </element>
 </zeroOrMore>
        
@@ -285,7 +295,7 @@
         </zeroOrMore>
 
     </define>
-    <define name="lines">
+    <define name="lineGroup">
     <element name="lines">
             <oneOrMore>
                 <element name="line">
@@ -298,13 +308,52 @@
        
            
         </element>
-
+    </define>
+    <define name="comment">
+        <element name="comment">
+        <text></text>
+                
+            
+        </element>
     </define>
     
+    <define name="annotation">
+        <zeroOrMore>
+            <element name="annotation">
+                <zeroOrMore>
+                    <ref name="phraseLevel"></ref>
+                </zeroOrMore>
+            </element>
+        </zeroOrMore>
+      
+    </define>
+    
+    <define name="phraseLevel">
+        <a:documentation>A definition for phrase level text</a:documentation>
+        <oneOrMore>
+            <choice>
+                <text/>
+                <element name="emph">
+                    <text/>
+                </element>
+                <element name="term">
+                    <text/>
+                </element>
+                <element name="cited">
+                    <text/>
+                </element>
+                <element name="ital">
+                    <text/>
+                </element>
+                <element name="bold">
+                    <text/>
+                </element>
+            </choice>
+        </oneOrMore>
+    </define>
+   
+   
     <start>
-        <element name="sixfivezerotwo">
-            <ref name="lines"/>
-           
-        </element>
+       <ref name="sixfivezerotwo"></ref>
     </start>
 </grammar>
