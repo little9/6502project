@@ -1,0 +1,11 @@
+<sixfivezerotwo><multiLineComment>;  ___           _        __ ___  __ ___
+; / __|_ _  __ _| |_____ / /| __|/  \_  )
+; \__ \ ' \/ _` | / / -_) _ \__ \ () / /
+; |___/_||_\__,_|_\_\___\___/___/\__/___|
+; Change direction: W A S D
+; $00-01 =&gt; screen location of apple
+; $10-11 =&gt; screen location of snake head
+; $12-?? =&gt; snake body (in byte pairs)
+; $02    =&gt; direction (1 =&gt; up, 2 =&gt; right, 4 =&gt; down, 8 =&gt; left)
+; $03    =&gt; snake length
+</multiLineComment></sixfivezerotwo>
