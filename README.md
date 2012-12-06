@@ -2,6 +2,7 @@
 
 This is a RelaxNG XML schema specification for 6502 assembly language documents. The goal of this project is to create a schema that can take advantge of XML tools and also be useful for digital preservation purposes.
 
+The schema is based on the [MOS Technology 6500 Series Programming Manual](MOS Technology 6500 Series Programming Manual).
 
 ## Document modeling files
 
