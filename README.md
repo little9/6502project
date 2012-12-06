@@ -1,6 +1,7 @@
 # 6502 Schema 
 
-This is a RelaxNG XML schema specification for 6502 assembly language documents. 
+This is a RelaxNG XML schema specification for 6502 assembly language documents. The goal of this project is to create a schema that can take advantge of XML tools and also be useful for digital preservation purposes.
+
 
 ## Document modeling files
 
