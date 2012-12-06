@@ -4,6 +4,8 @@ This is a RelaxNG XML schema specification for 6502 assembly language documents.
 
 The schema is based on the [MOS Technology 6500 Series Programming Manual](http://bytecollector.com/archive/misc/6500-50A_MCS6500pgmManJan76.pdf).
 
+
+
 ## Document modeling files
 
 *6502schema.rng* - This is the schema itself
