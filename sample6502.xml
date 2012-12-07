@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/C:/Users/James/SkyDrive/6502project/6502schema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="6502schema.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <sixfivezerotwo>
     <lineGroup>
         <multiLineComment>
