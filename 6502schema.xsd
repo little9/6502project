@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="sixfivezerotwo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group minOccurs="0" maxOccurs="unbounded" ref="annotation"/>
+        <xs:element ref="lineGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="mnemonicValue">
+    <xs:annotation>
+      <xs:documentation>Definition for a mnemonic value which can contain value elements and comment elements</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="value"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>A comment element that can contain text. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:group>
+  <xs:element name="value" type="xs:string"/>
+  <xs:group name="instuctionValue">
+    <xs:sequence>
+      <xs:element ref="value"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="label">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="label"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="label">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element ref="lineGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="instructionSet">
+    <xs:annotation>
+      <xs:documentation>Defines elements that make up the 6502 instuction set definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="mnemonic"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="mnemonic">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="ADCaddWithCarry"/>
+        <xs:element ref="ANDbitwiseAndWithAccumulator"/>
+        <xs:element ref="ASLartihmeticShiftLeft"/>
+        <xs:element ref="BITtestBits"/>
+        <xs:element ref="BPLsetCarry"/>
+        <xs:element ref="BMIbranchonMinus"/>
+        <xs:element ref="BVCbranchonOverflowClear"/>
+        <xs:element ref="BVSbranchonOverflowSet"/>
+        <xs:element ref="BCCbranchonCarryClear"/>
+        <xs:element ref="BCSbranchonCarrySet"/>
+        <xs:element ref="BEQbranchonEqual"/>
+        <xs:element ref="BNEbranchonNotequal"/>
+        <xs:element ref="BRKbreak"/>
+        <xs:element ref="CMPcompareAccumulator"/>
+        <xs:element ref="CPXcompareXRegister"/>
+        <xs:element ref="CPYcompareYRegister"/>
+        <xs:element ref="DECdecrementMemory"/>
+        <xs:element ref="EORbitWiseExclusiveOr"/>
+        <xs:element ref="CLClearCarry"/>
+        <xs:element ref="SECsetCarry"/>
+        <xs:element ref="SEIsetCarry"/>
+        <xs:element ref="CLIclearInterrupt"/>
+        <xs:element ref="SEIsetInterrupt"/>
+        <xs:element ref="CLVclearOverflow"/>
+        <xs:element ref="CLDclearDecimal"/>
+        <xs:element ref="SEDsetDecimal"/>
+        <xs:element ref="INCincrementMemory"/>
+        <xs:element ref="JMPjump"/>
+        <xs:element ref="JSRjumpToSubRoutine"/>
+        <xs:element ref="LDAloadAccumulator"/>
+        <xs:element ref="LDXloadXRegister"/>
+        <xs:element ref="LDYloadYRegister"/>
+        <xs:element ref="LSRlogicalShiftRight"/>
+        <xs:element ref="NOPnoOperation"/>
+        <xs:element ref="ORAbitwiseOrWithAccumulator"/>
+        <xs:element ref="TAXTtansferAtoX"/>
+        <xs:element ref="TXAtransferXtoA"/>
+        <xs:element ref="DEXdecrementX"/>
+        <xs:element ref="INXincrementX"/>
+        <xs:element ref="TAYtransferAtoY"/>
+        <xs:element ref="DEYdecrementY"/>
+        <xs:element ref="INYincrementY"/>
+        <xs:element ref="ROLrotateLeft"/>
+        <xs:element ref="RORrotateRight"/>
+        <xs:element ref="RTIreturnFromInterrupt"/>
+        <xs:element ref="RTSreturnFromSubroutine"/>
+        <xs:element ref="SBCSubTractwithCarry"/>
+        <xs:element ref="STAStoreAccumulator"/>
+        <xs:element ref="TSXTransferXtoStackptr"/>
+        <xs:element ref="TSXTranferStackPtrtoX"/>
+        <xs:element ref="PHAPushAccumulator"/>
+        <xs:element ref="PLApullAccumulator"/>
+        <xs:element ref="PHPpushProcessorStatus"/>
+        <xs:element ref="PLPpullProcessorsStatus"/>
+        <xs:element ref="STXstoreXReigster"/>
+        <xs:element ref="STYstoreYRegister"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ADCaddWithCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="ADC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ANDbitwiseAndWithAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="AND"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ASLartihmeticShiftLeft">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="ASL"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BITtestBits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BIT"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BPLsetCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BPL"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BMIbranchonMinus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BMT"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BVCbranchonOverflowClear">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BVC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BVSbranchonOverflowSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BVS"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BCCbranchonCarryClear">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BCC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BCSbranchonCarrySet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BCS"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BEQbranchonEqual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BEQ"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BNEbranchonNotequal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BNE"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BRKbreak">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="BRK"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CMPcompareAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CMP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CPXcompareXRegister">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CPX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CPYcompareYRegister">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CPY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DECdecrementMemory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="DEC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EORbitWiseExclusiveOr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="EOR"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CLClearCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CLC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SECsetCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="SET"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SEIsetCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="SEI"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CLIclearInterrupt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CLI"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SEIsetInterrupt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="SEI"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CLVclearOverflow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CLV"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CLDclearDecimal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="CLD"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SEDsetDecimal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="SED"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="INCincrementMemory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="INC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="JMPjump">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="JMP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="JSRjumpToSubRoutine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="JSR"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LDAloadAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="LDA"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LDXloadXRegister">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="LDX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LDYloadYRegister">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="LDY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LSRlogicalShiftRight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="LSR"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NOPnoOperation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="NOP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ORAbitwiseOrWithAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="ORA"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TAXTtansferAtoX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="TAX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TXAtransferXtoA">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="TXA"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DEXdecrementX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="DEX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="INXincrementX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="INX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TAYtransferAtoY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="TAY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DEYdecrementY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="DEY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="INYincrementY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="INY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ROLrotateLeft">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="ROL"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RORrotateRight">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="ROR"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTIreturnFromInterrupt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="RTI"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTSreturnFromSubroutine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="RTS"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SBCSubTractwithCarry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="SBC"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="STAStoreAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="STA"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TSXTransferXtoStackptr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="TSX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TSXTranferStackPtrtoX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="OOO"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PHAPushAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="PHP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PLApullAccumulator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="PLA"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PHPpushProcessorStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="PHP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PLPpullProcessorsStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="PLP"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="instuctionValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="STXstoreXReigster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="STX"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="STYstoreYRegister">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="STY"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:group ref="mnemonicValue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lineGroup">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element maxOccurs="unbounded" ref="line"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="multiLineComment"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="line">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="instructionSet"/>
+        <xs:group ref="label"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="comment">
+    <xs:sequence>
+      <xs:element name="comment" type="xs:string"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="annotation">
+    <xs:annotation>
+      <xs:documentation>Defines an annotation. This is not a comment in the source code, but annotations in the marked up documents.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="annotation"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="annotation">
+    <xs:complexType mixed="true">
+      <xs:group minOccurs="0" maxOccurs="unbounded" ref="phraseLevel"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="phraseLevel">
+    <xs:annotation>
+      <xs:documentation>A definition for phrase level text</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="emph"/>
+        <xs:element ref="term"/>
+        <xs:element ref="cited"/>
+        <xs:element ref="ital"/>
+        <xs:element ref="bold"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="emph" type="xs:string"/>
+  <xs:element name="term" type="xs:string"/>
+  <xs:element name="cited" type="xs:string"/>
+  <xs:element name="ital" type="xs:string"/>
+  <xs:element name="bold" type="xs:string"/>
+  <xs:element name="multiLineComment" type="xs:string"/>
+</xs:schema>
